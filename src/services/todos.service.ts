@@ -19,10 +19,10 @@ export class TodosService {
       });
   }
 
-  readTasks()  {
+  readTasks(): Observable<TodoTask[]>  {
         return this._http.get('http://localhost:5879/api/values')
           .map(res => {
-              return new TodoTask(res);
+              return new TodoTask({res});
             });
   }
 
