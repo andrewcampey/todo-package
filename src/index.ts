@@ -3,17 +3,22 @@ import { CommonModule } from '@angular/common';
 
 import { TodoTask } from './models/todotask';
 
+import { TodosService } from './services/todos.service';
+
 export * from './models/todotask';
+export *  from './services/todos.service';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    TodoTask
+    TodoTask,
+    TodosService
   ],
   exports: [
-    TodoTask
+    TodoTask,
+    TodosService
   ]
 })
 export class TodoTaskModule {
