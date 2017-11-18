@@ -4,4 +4,10 @@ export class TodoTask {
     public geolocation: string;
     public email: string;
     public Image: string;
+
+    constructor(
+        init?: Partial<TodoTask>
+    ) {
+        Object.assign(this, init);
+    }
 }
