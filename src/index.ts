@@ -16,10 +16,10 @@ export * from './models/todotask';
     TodoTask
   ]
 })
-export class SampleModule {
+export class TodoTaskModule {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: SampleModule,
+      ngModule: TodoTaskModule,
       providers: []
     };
   }
