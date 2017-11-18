@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import { TodoTask, TODOTASKS } from '../models/todotask';
+import { TodoTask } from '../models/todotask';
 
 @Injectable()
 export class TodosService {
@@ -12,25 +13,30 @@ export class TodosService {
   constructor(private _http: HttpClient) { }
 
   createTask(task: TodoTask) {
-    return TODOTASKS.push(task);
+    return this._http.post('http://localhost:5879/api/values', task)
+    .map(res => {
+        return this.readTasks();
+      });
   }
 
   readTasks()  {
-      return TODOTASKS;
-
-      /*
-        return this._http.get(this.swapiURL + 'planets/')
+        return this._http.get('http://localhost:5879/api/values')
           .map(res => {
               return new TodoTask(res);
             });
-      */
   }
 
   updateTask(task: TodoTask) {
-    return TODOTASKS;
+    return this._http.put('http://localhost:5879/api/values/' + task.taskID, task)
+    .map(res => {
+        return this.readTasks();
+      });
   }
 
   deleteTask(task: TodoTask) {
-    return TODOTASKS;
+    return this._http.delete('http://localhost:5879/api/values/' + task.taskID)
+    .map(res => {
+        return this.readTasks();
+      });
   }
 }
